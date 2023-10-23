@@ -2,6 +2,7 @@ import sys
 
 from parse_temps import parse_raw_temps
 
+from typing import List
 def main (args: List[str]) -> int:
     """
     The main function for the CPU Temperatures Project.
