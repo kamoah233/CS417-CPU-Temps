@@ -31,4 +31,16 @@ def least_squares_approximation(time, data):
     """
     k = len(time)
 
-    #Compute the 
+     s_x_i = 0;
+    s_x_2_i = 0;
+    sfi = 0;
+    s_x_i_f_i = 0;
+
+    #Compute c1
+    c1 = (s_x_2_i*sfi - s_x_i*s_x_i_f_i)/(k*s_x_2_i - s_x_i**2)
+
+    #c0 computation
+    c0 = ((s_x_2_i*sfi)-(s_x_i*s_x_i_f_i))/(k*s_x_2_i - s_x_i**2)
+
+    return ([c0, c1])
+#Compute the 
