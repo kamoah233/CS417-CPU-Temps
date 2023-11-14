@@ -3,7 +3,7 @@
     Fall 2023
 """
 import argparse
-# import numpy as np
+import numpy as np
 
 
 Parser = argparse.ArgumentParser()
@@ -31,10 +31,22 @@ def least_squares_approximation(time, data):
     """
     k = len(time)
 
-     s_x_i = 0;
-    s_x_2_i = 0;
-    sfi = 0;
-    s_x_i_f_i = 0;
+    s_x_i = 0
+    s_x_2_i = 0
+    sfi = 0 
+    s_x_i_f_i = 0
+
+    """ s_x_i = np.sum(x)
+    s_x_2_i = np.sum(x**2)
+    sfi = np.sum(f)
+    s_x_i_f_i = np.sum(x*f) """
+
+    for i,j in enumerate(time, data):
+        s_x_i += i
+        s_x_2_i += i**2
+        sfi += j
+        s_x_i_f_i += i*j
+    
 
     #Compute c1
     c1 = (s_x_2_i*sfi - s_x_i*s_x_i_f_i)/(k*s_x_2_i - s_x_i**2)
@@ -42,5 +54,7 @@ def least_squares_approximation(time, data):
     #c0 computation
     c0 = ((s_x_2_i*sfi)-(s_x_i*s_x_i_f_i))/(k*s_x_2_i - s_x_i**2)
 
-    return ([c0, c1])
-#Compute the 
+    return np.array([c0, c1])
+
+
+     
