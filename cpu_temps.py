@@ -4,9 +4,12 @@
 """
 import argparse
 import numpy as np
+import driver
 
 
 Parser = argparse.ArgumentParser()
+args = Parser.parse_args()
+Parser.add_argument('input_file', type=str, help='input file to read')
 
 def piecewise_linear_interpolation(time, data):
     """
@@ -15,11 +18,11 @@ def piecewise_linear_interpolation(time, data):
     :param data: data from one core
     :return: slope
     """
-    slope = []
+    pli = []
     for i in range(len(time)-1):
-        slope.append((data[i+1] - data[i])/(time[i+1]-time[i]))
+        pli.append((data[i+1] - data[i])/(time[i+1]-time[i]))
     
-    return slope
+    return pli
 
 def least_squares_approximation(time, data):
     """
@@ -56,5 +59,21 @@ def least_squares_approximation(time, data):
 
     return np.array([c0, c1])
 
+if __name__ == '__main__':
+    date = driver._get_date(args.input_file)
+    
+    times, cores = driver._read_file(args.input_file)
 
-     
+    cores_pli = []
+    cores_lsa = []
+    for i, core in enumerate(cores):
+        cores_pli.append(piecewise_linear_interpolation(times, core))
+        cores_lsa.append(least_squares_approximation(times, core))
+  
+    for i, core in enumerate(cores):
+        driver._write_to_output_file(date, times, core, cores_pli[i], cores_lsa[i])
+
+
+
+    
+
