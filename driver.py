@@ -34,7 +34,7 @@ def _get_date(input_file):
     date = parser.parse(input_file[0:10])
     return date
 
-    def print_core_times(times, cores):
+def print_core_times(times, cores):
         """
         Print the times and core temperatures
 
@@ -46,7 +46,7 @@ def _get_date(input_file):
         for i,t in enumerate(times):
             print(f'{times[i]:<7} || {core[i]:<5} |')
 
-    def _write_to_output_file (date, times, cores,PLI_data, LSA_data):
+def _write_to_output_file (date, times, cores,PLI_data, LSA_data):
         """
         Write the data to an output file
 
