@@ -44,7 +44,7 @@ def print_core_times(times, cores):
         return: prints the times and core temperatures
         """
         for i,t in enumerate(times):
-            print(f'{times[i]:<7} || {core[i]:<5} |')
+            print(f'{times[i]:<7} || {cores[i]:<5} |')
 
 def _write_to_output_file (date, times, cores,PLI_data, LSA_data):
         """
@@ -59,7 +59,7 @@ def _write_to_output_file (date, times, cores,PLI_data, LSA_data):
         :return: output file with least squares approximation of a data core
         """
 
-        output_file = "output/" + date + "_core" + str(core) + ".txt"
+        output_file = "output/" + date + "_core" + str(cores) + ".txt"
         output = open(f'{date}_output.txt', 'w')
 
         c0 = LSA_data[0]
